@@ -1,15 +1,35 @@
-// --- 1. 프로젝트 데이터 및 변수 설정 (이미지 경로 수정 적용) ---
+// --- 1. 프로젝트 데이터 및 변수 설정 (미션 설명 추가) ---
 const missions = [
-    // 미션 장소 정보 업데이트: 제주돌문화공원, 제주4.3평화공원 적용
-    { id: 'seed', name: '창조의 씨앗', location: '설문대여성문화센터', isCollected: false, imagePath: './seed_creation.png' },
-    { id: 'guard', name: '수호의 조각', location: '제주돌문화공원', isCollected: false, imagePath: './seed_wish.png' },
-    { id: 'peace', name: '평화의 바람개비', location: '제주4.3평화공원', isCollected: false, imagePath: './seed_peace.png' }
+    { 
+        id: 'seed', 
+        name: '창조의 씨앗', 
+        location: '설문대여성문화센터', 
+        isCollected: false, 
+        imagePath: './seed_creation.png',
+        description: "할망이 섬을 창조할 때 사용했던 생명의 씨앗입니다. 이 씨앗은 여성들의 지혜와 역사가 응축된 이 공간에서 다시 깨어납니다." // 예시 텍스트
+    },
+    { 
+        id: 'guard', 
+        name: '수호의 조각', 
+        location: '제주돌문화공원', 
+        isCollected: false, 
+        imagePath: './seed_wish.png',
+        description: "수많은 돌 속에는 할망의 눈물이 스며들어 있습니다. 이 조각은 돌에 깃든 땅의 정령을 깨우고, 우리 가족을 수호하는 힘을 가졌습니다." // 예시 텍스트
+    },
+    { 
+        id: 'peace', 
+        name: '평화의 바람개비', 
+        location: '제주4.3평화공원', 
+        isCollected: false, 
+        imagePath: './seed_peace.png',
+        description: "분노와 슬픔을 잠재우고 평화를 기원하는 바람개비입니다. 비극의 역사가 서린 이곳에서, 희망의 바람을 불어넣어 평화를 완성하세요." // 예시 텍스트
+    }
 ];
+
 const dialogues = [
     "사랑하는 나의 아이들아, 드디어 이 할망이 만든 섬에 발을 디뎠구나. 나는 설문대, 이 땅의 모든 산과 오름, 그리고 숨 쉬는 너희의 어머니이니라.",
     "나의 창조의 흔적은 돌이 되었고, 백록담의 물이 되었으며, 너희가 딛고 선 역사 속에 스며들어 있단다. 이제 너희가 이 섬의 역사를 나의 눈으로 보며, 그 지혜를 깨우칠 차례이다.",
-    // 첫 번째 미션 시작 장소는 '설문대여성문화센터'로 유지
-    "이 할망이 보낸 첫 번째 '창조의 씨앗'을 가지고, 설문대여성문화센터로 향해라. 너희의 탐험은 그곳의 돌에서부터 시작될지니."
+    "이 할망이 보낸 첫 번째 '창조의 씨앗'을 가지고, 설문대여성문화센터로 향해라. 너희의 탐험은 그곳의 돌에서부터 시작될지니." 
 ];
 
 let dialogueIndex = 0;
@@ -28,6 +48,7 @@ const step1 = document.getElementById('step-1');
 const step2 = document.getElementById('step-2');
 const missionLocationText = document.getElementById('mission-location');
 const missionItemImage = document.getElementById('mission-item-image');
+const missionDescriptionText = document.getElementById('mission-description'); // 새로운 DOM 요소 선택
 const startAuthBtn = document.getElementById('start-auth-btn'); 
 const collectItemBtn = document.getElementById('collect-item-btn');
 const cameraPreview = document.getElementById('camera-preview');
@@ -77,9 +98,10 @@ startNextMissionBtn.addEventListener('click', () => {
 
     currentMissionIndex = missions.findIndex(m => m.id === nextMission.id);
     
-    // Step 1: 미션 내용 업데이트 (장소 및 아이템 이미지)
+    // Step 1: 미션 내용 업데이트 (장소, 아이템 이미지, 미션 설명)
     missionLocationText.textContent = nextMission.location;
     missionItemImage.src = nextMission.imagePath;
+    missionDescriptionText.textContent = nextMission.description; // 미션 설명 업데이트
     
     // 모달 열기 및 Step 1 초기화
     modal.style.display = 'flex';
@@ -100,7 +122,6 @@ startAuthBtn.addEventListener('click', async () => {
         cameraPreview.srcObject = cameraStream;
     } catch (err) {
         console.error("카메라 접근 오류: ", err);
-        // 에러 발생 시 사용자에게 카메라 접근 권한 필요 메시지 표시 필요
     }
 });
 

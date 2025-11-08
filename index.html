@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>할망런</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="intro-screen">
+        <header><h1>👩‍🦳 할망런 🏃</h1></header>
+        <div class="story-content">
+            <div class="halmang-illustration">
+                <img src="./halmang_intro.png" alt="설문대할망 일러스트" style="max-width: 100%; height: auto;">
+            </div>
+            <p id="dialogue-text">...</p>
+        </div>
+        <button id="next-dialogue-btn">다음 (SKIP)</button>
+    </div>
+
+    <div id="main-mission-screen" style="display: none;">
+        <header><h1>탐험 리스트 📝</h1></header>
+        <div id="mission-status-list">
+            </div>
+        <button id="start-next-mission-btn">다음 미수집 미션 시작</button>
+
+        <div id="reward-section" style="display: none;">
+            <img src="./voucher.png" alt="야시장 바우처" style="max-width: 100px; margin: 10px;">
+            <button id="show-voucher-info-btn">바우처 교환 안내 보기</button>
+        </div>
+    </div>
+
+    <div id="mission-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div id="step-1">
+                <h2 id="mission-location">미션 장소 이름</h2>
+                <img id="mission-item-image" src="" alt="미션 아이템" style="max-width: 80%; height: auto; margin: 10px 0;">
+                <button id="start-auth-btn">미션 완료</button>
+            </div>
+
+            <div id="step-2" style="display: none;">
+                <h3>할망런 추억 남기기</h3>
+                <div class="camera-feed-container">
+                    <video id="camera-preview" autoplay></video>
+                </div>
+                <button id="take-photo-btn">📸 사진 찍기 (선택)</button>
+                <button id="collect-item-btn">✅ 아이템 수집 완료</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

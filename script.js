@@ -1,6 +1,6 @@
 // --- 1. 프로젝트 데이터 및 변수 설정 (이미지 경로 수정 적용) ---
 const missions = [
-    // 이미지 경로를 모두 루트 폴더 기준으로 수정
+    // 미션 장소 정보 업데이트: 제주돌문화공원, 제주4.3평화공원 적용
     { id: 'seed', name: '창조의 씨앗', location: '설문대여성문화센터', isCollected: false, imagePath: './seed_creation.png' },
     { id: 'guard', name: '수호의 조각', location: '제주돌문화공원', isCollected: false, imagePath: './seed_wish.png' },
     { id: 'peace', name: '평화의 바람개비', location: '제주4.3평화공원', isCollected: false, imagePath: './seed_peace.png' }
@@ -8,7 +8,8 @@ const missions = [
 const dialogues = [
     "사랑하는 나의 아이들아, 드디어 이 할망이 만든 섬에 발을 디뎠구나. 나는 설문대, 이 땅의 모든 산과 오름, 그리고 숨 쉬는 너희의 어머니이니라.",
     "나의 창조의 흔적은 돌이 되었고, 백록담의 물이 되었으며, 너희가 딛고 선 역사 속에 스며들어 있단다. 이제 너희가 이 섬의 역사를 나의 눈으로 보며, 그 지혜를 깨우칠 차례이다.",
-    "이 할망이 보낸 첫 번째 '창조의 씨앗'을 가지고, 제주돌문화공원으로 향해라. 너희의 탐험은 그곳의 돌에서부터 시작될지니."
+    // 첫 번째 미션 시작 장소는 '설문대여성문화센터'로 유지
+    "이 할망이 보낸 첫 번째 '창조의 씨앗'을 가지고, 설문대여성문화센터로 향해라. 너희의 탐험은 그곳의 돌에서부터 시작될지니."
 ];
 
 let dialogueIndex = 0;
@@ -88,7 +89,7 @@ startNextMissionBtn.addEventListener('click', () => {
 
 
 // --- 5. 미션 모달 로직 (Step 1 -> Step 2 전환 및 완료) ---
-// Step 1의 '현장 인증 시작' 버튼 클릭 -> Step 2 (카메라 화면) 전환
+// Step 1의 '미션 완료' 버튼 클릭 -> Step 2 (카메라 화면) 전환
 startAuthBtn.addEventListener('click', async () => {
     step1.style.display = 'none';
     step2.style.display = 'block'; // 현장 인증 모드 표시
@@ -99,6 +100,7 @@ startAuthBtn.addEventListener('click', async () => {
         cameraPreview.srcObject = cameraStream;
     } catch (err) {
         console.error("카메라 접근 오류: ", err);
+        // 에러 발생 시 사용자에게 카메라 접근 권한 필요 메시지 표시 필요
     }
 });
 
